@@ -6,17 +6,16 @@ frame_count = 6007
 saved_count = 6007
 for file_name in os.listdir(folder_path):
     if os.path.isfile(os.path.join(folder_path, file_name)):
-        #C:/Users/Fortniter/Downloads/WhatsApp Video 2024-09-23 at 23.47.51.mp4
         # Путь к видеофайлу
         video_path = f"{file_name}"
         # Папка для сохранения изображений
-        output_folder = 'dataset2/output_images'
+        output_folder = ''
         # Интервал между кадрами (каждый n-й кадр будет сохранен)
         frame_interval = 4  # Можно изменить на 2, 5 и т.д.
 
         os.makedirs(output_folder, exist_ok=True)
 
-        # Открытие видеофайла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
+        # Открытие видеофайла
         cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
             print(f"Ошибка открытия видеофайла: {video_path}")
