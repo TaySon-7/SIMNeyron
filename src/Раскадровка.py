@@ -1,14 +1,14 @@
 import cv2
 import os
 import time
-folder_path = "C:\\Users\\Fortniter\\PycharmProjects\\Kickshering Neyron2.0\\dataset2\\Videos"
+folder_path = ""
 frame_count = 6007
 saved_count = 6007
 for file_name in os.listdir(folder_path):
     if os.path.isfile(os.path.join(folder_path, file_name)):
         #C:/Users/Fortniter/Downloads/WhatsApp Video 2024-09-23 at 23.47.51.mp4
         # Путь к видеофайлу
-        video_path = f"C:\\Users\\\Fortniter\\PycharmProjects\\Kickshering Neyron2.0\\dataset2\\Videos\\{file_name}"
+        video_path = f"{file_name}"
         # Папка для сохранения изображений
         output_folder = 'dataset2/output_images'
         # Интервал между кадрами (каждый n-й кадр будет сохранен)
