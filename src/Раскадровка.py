@@ -16,7 +16,7 @@ for file_name in os.listdir(folder_path):
         os.makedirs(output_folder, exist_ok=True)
 
         # Открытие видеофайла
-        cap = cv2.VideoCapture(video_path)
+        #cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
             print(f"Ошибка открытия видеофайла: {video_path}")
             exit()
