@@ -44,6 +44,7 @@ num_test = int(num_images * test_percent)
 num_valid = int(num_images * valid_percent)
 num_train = num_images - num_test - num_valid
 
+
 # Перемещение данных в соответствующие папки
 def move_files(file_list, source_image_dir, source_label_dir, dest_image_dir, dest_label_dir):
     for file in file_list:
@@ -52,11 +53,13 @@ def move_files(file_list, source_image_dir, source_label_dir, dest_image_dir, de
         shutil.move(image_path, os.path.join(dest_image_dir, file))
         shutil.move(label_path, os.path.join(dest_label_dir, os.path.splitext(file)[0] + '.txt'))
 
+
 # Перемещение тестовых данных
 move_files(images[:num_test], train_images_path, train_labels_path, test_images_path, test_labels_path)
 
 # Перемещение валидационных данных
-move_files(images[num_test:num_test + num_valid], train_images_path, train_labels_path, valid_images_path, valid_labels_path)
+move_files(images[num_test:num_test + num_valid], train_images_path, train_labels_path, valid_images_path,
+           valid_labels_path)
 
 # Оставшиеся данные остаются в папке train
 

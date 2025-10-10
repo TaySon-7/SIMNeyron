@@ -354,7 +354,9 @@ cython_debug/
 # AWS User-specific
 
 # Generated files
-
+src/dataset/*
+src/models/*
+src/detected_videos/*
 # Sensitive or high-churn files
 
 # Gradle

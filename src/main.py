@@ -4,20 +4,19 @@ import numpy as np
 import os
 import random
 import random
+
+from src.constants import COLORS
+
+
 def uniqueid():
     seed = random.getrandbits(32)
     while True:
-       yield seed
-       seed += 1
+        yield seed
+        seed += 1
+
+
 unique_sequence = uniqueid()
-model = YOLO("C:\\Users\\Fortniter\\PycharmProjects\\Kickshering neyron\\runs\\detect\\red10\\weights\\best.pt")
-# Список цветов для различных классов
-colors = [
-    (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (0, 255, 255),
-    (255, 0, 255), (192, 192, 192), (128, 128, 128), (128, 0, 0), (128, 128, 0),
-    (0, 128, 0), (128, 0, 128), (0, 128, 128), (0, 0, 128), (72, 61, 139),
-    (47, 79, 79), (47, 79, 47), (0, 206, 209), (148, 0, 211), (255, 20, 147)
-]
+model = YOLO("models/best.pt")
 
 
 # Функция для обработки изображения
@@ -38,11 +37,11 @@ def process_image(image_path):
     # Рисование рамок и группировка результатов
     for class_id, box in zip(classes, boxes):
         class_name = classes_names[int(class_id)]
-        color = colors[int(class_id) % len(colors)]  # Выбор цвета для класса
+        color = COLORS[int(class_id) % len(COLORS)]  # Выбор цвета для класса
         id = str(next(unique_sequence))
         if class_name not in grouped_objects:
-            grouped_objects[id + " "+class_name] = []
-        grouped_objects[id+" "+class_name].append(box)
+            grouped_objects[id + " " + class_name] = []
+        grouped_objects[id + " " + class_name].append(box)
 
         # Рисование рамок на изображении
         x1, y1, x2, y2 = box
@@ -78,7 +77,8 @@ def process_image(image_path):
             for class_name1, details1 in grouped_objects.items():
                 if "Deck" in class_name1:
                     for details in details1:
-                        if (x - w // 2) < details[0] and (x + w // 2) > details[0]  and y > details[2] and h > details[3]:
+                        if (x - w // 2) < details[0] and (x + w // 2) > details[0] and y > details[2] and h > details[
+                            3]:
                             x1 = details[0]
                             w1 = details[1]
                             y1 = details[2]
@@ -96,7 +96,8 @@ def process_image(image_path):
                                 pred = detail[0]
                 if "Foot" in class_name1:
                     for detail in details1:
-                        if (abs(x - detail[0]) < 250 and abs(y - detail[2]) < 250) or (abs(x1 - detail[0]) < 250 and x1 != 0):
+                        if (abs(x - detail[0]) < 250 and abs(y - detail[2]) < 250) or (
+                                abs(x1 - detail[0]) < 250 and x1 != 0):
                             foot += 1
                 if "Zebra" in class_name1:
                     for detail in details1:
@@ -113,9 +114,5 @@ def process_image(image_path):
     print(len(grouped_objects))
 
 
-
-
-
-
-
-process_image("C:\\Users\\Fortniter\\PycharmProjects\\Kickshering Neyron2.0\\dataset2\\output_images\\1758821633198_frame1_03093.jpg")
+process_image(
+    "dataset2/output_images/1758821633198_frame1_03093.jpg")

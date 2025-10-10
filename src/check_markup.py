@@ -15,6 +15,7 @@ colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0)]
 # Чтение всех файлов изображений и меток
 images = [f for f in os.listdir(images_path) if f.endswith(('.jpg', '.jpeg', '.png'))]
 
+
 # Функция для преобразования координат из нормализованных значений в пиксели
 def denormalize_coordinates(x_center, y_center, width, height, img_width, img_height):
     x_center *= img_width
@@ -26,6 +27,7 @@ def denormalize_coordinates(x_center, y_center, width, height, img_width, img_he
     x2 = int(x_center + width / 2)
     y2 = int(y_center + height / 2)
     return x1, y1, x2, y2
+
 
 # Обработка изображений
 for image_file in images:

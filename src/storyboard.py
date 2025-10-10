@@ -1,6 +1,7 @@
 import cv2
 import os
 import time
+
 folder_path = ""
 frame_count = 6007
 saved_count = 6007
@@ -16,11 +17,10 @@ for file_name in os.listdir(folder_path):
         os.makedirs(output_folder, exist_ok=True)
 
         # Открытие видеофайла
-        #cap = cv2.VideoCapture(video_path)
+        cap = cv2.VideoCapture(video_path)
         if not cap.isOpened():
             print(f"Ошибка открытия видеофайла: {video_path}")
             exit()
-
 
         while True:
             ret, frame = cap.read()
