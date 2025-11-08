@@ -1,9 +1,9 @@
-from ultralytics import YOLO
-import cv2
-import numpy as np
 import os
 import random
-import random
+
+import cv2
+import numpy as np
+from ultralytics import YOLO
 
 from src.constants import COLORS
 
@@ -16,7 +16,7 @@ def uniqueid():
 
 
 unique_sequence = uniqueid()
-model = YOLO("models/best.pt")
+model = YOLO("models/besty.pt")
 # Список цветов для различных классов
 
 

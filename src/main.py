@@ -1,9 +1,9 @@
-from ultralytics import YOLO
-import cv2
-import numpy as np
 import os
 import random
-import random
+
+import cv2
+import numpy as np
+from ultralytics import YOLO
 
 from src.constants import COLORS
 
@@ -41,7 +41,8 @@ def process_image(image_path):
         id = str(next(unique_sequence))
         if class_name not in grouped_objects:
             grouped_objects[id + " " + class_name] = []
-        grouped_objects[id + " " + class_name].append(box)
+        (grouped_objects[id + " " + class_name].
+         append(box))
 
         # Рисование рамок на изображении
         x1, y1, x2, y2 = box
@@ -77,7 +78,7 @@ def process_image(image_path):
             for class_name1, details1 in grouped_objects.items():
                 if "Deck" in class_name1:
                     for details in details1:
-                        if (x - w // 2) < details[0] and (x + w // 2) > details[0] and y > details[2] and h > details[
+                        if (x - w // 2) < details[0] < (x + w // 2) and y > details[2] and h > details[
                             3]:
                             x1 = details[0]
                             w1 = details[1]
@@ -115,4 +116,4 @@ def process_image(image_path):
 
 
 process_image(
-    "dataset2/output_images/1758821633198_frame1_03093.jpg")
+    "")

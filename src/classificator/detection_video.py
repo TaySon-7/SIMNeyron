@@ -1,11 +1,13 @@
 import os
 import uuid
+from typing import Iterable
 
 from ultralytics import YOLO
+from ultralytics.engine.results import Results
 
 
 def detection_video(path_to_video: str, path_to_model: str, save_path: str = "./detected_videos",
-                    show: bool = False, save_json: bool = True, save_text: bool = True) -> None:
+                    show: bool = False, save_json: bool = False, save_text: bool = False) -> Iterable[Results]:
     """
     Размечает видео
     :param path_to_video: Путь до видео.
@@ -23,12 +25,12 @@ def detection_video(path_to_video: str, path_to_model: str, save_path: str = "./
     model = YOLO(path_to_model)
     uid = uuid.uuid4()
     file_name = "video-" + uid.__str__()
-    results = model.track(path_to_video, show=show, save=True, project=save_path, name=file_name,
+    results = model.track(path_to_video, show=show, stream=False, save=True, project=save_path, name=file_name,
                           save_txt=save_text)
     if save_json:
         with open(f"{save_path}/{file_name}/{file_name}.jsonl", 'w') as output_json:
             for result in results:
                 output_json.write(result.to_json() + '\n')
+    return results
 
-
-# detection_video(r"dataset/test_video/DSC_0027.MOV", r"models/best.pt", show=False)
+# detection_video(r"dataset/test_video/video_2025-10-27_12-59-32.mp4", r"models/besty.pt", show=True, save_json=False)

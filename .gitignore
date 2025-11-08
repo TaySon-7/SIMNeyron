@@ -357,6 +357,7 @@ cython_debug/
 src/dataset/*
 src/models/*
 src/detected_videos/*
+src/training_dataset_crosswalk/*
 # Sensitive or high-churn files
 
 # Gradle
