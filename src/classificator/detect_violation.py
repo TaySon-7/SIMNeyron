@@ -51,8 +51,8 @@ def detect_violation(image: Results) -> dict[DetectedObject, set[Violation]] | N
             if foot_count > 1 or head_count > 1:
                 violations[scooter].add(
                     Violation(
-                        ViolationNames.more_than_one_people))  # TODO Артему передать в Violation время и координаты
+                        ViolationNames.more_than_one_people, scooter_type))  # TODO Артему передать в Violation время и координаты
             elif zebra_count > 0 and foot_count > 0:
                 violations[scooter].add(
-                    Violation(ViolationNames.zebra_crossing))  # TODO Артему передать в Violation время и координаты
+                    Violation(ViolationNames.zebra_crossing, scooter_type))  # TODO Артему передать в Violation время и координаты
     return violations

@@ -1,4 +1,3 @@
-import uuid
 from enum import Enum
 from typing import Any
 
@@ -31,8 +30,10 @@ class ViolationNames(str, Enum):
 
 
 class Violation:
-    def __init__(self, violation_name: ViolationNames, global_coordinates: Any = None, time: Any = None):
+    def __init__(self, violation_name: ViolationNames, scooter_name: ModelObject, global_coordinates: Any = None,
+                 time: Any = None):
         self.violation_name = violation_name
+        self.scooter_name = scooter_name
         self.global_coordinates = global_coordinates
         self.time = time
         # TODO Артему необходимо заменить здесь координаты нарушения + добавить время нарушения
@@ -44,7 +45,7 @@ class Violation:
         return self.violation_name.name == other.violation_name.name
 
     def __repr__(self):
-        return f"[{self.time}]: {self.violation_name} in {self.global_coordinates}"
+        return f"[{self.time}]: {self.violation_name} in {self.global_coordinates} on {self.scooter_name} scooter"
 
 
 MODEL_OBJECTS_FROM_STRING = {"Yandex": ModelObject.yandex,
@@ -84,6 +85,3 @@ class DetectedObject:
 
     def __repr__(self):
         return f"{self.name}[{self.id}]: {self.cords}"
-
-    def dot_inside(self):
-        pass
